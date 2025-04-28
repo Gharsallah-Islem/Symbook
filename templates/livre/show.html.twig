@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre Details{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Détails du Livre</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ livre.Image }}" alt="{{ livre.titre }}" class="img-fluid mb-3">
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>{{ livre.titre }}</h2>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>ISBN:</strong> {{ livre.ISBN }}</p>
+                        <p><strong>Slug:</strong> {{ livre.Slug }}</p>
+                        <p><strong>Résumé:</strong> {{ livre.Resume }}</p>
+                        <p><strong>Éditeur:</strong> {{ livre.Editeur }}</p>
+                        <p><strong>Date d'édition:</strong> {{ livre.DateEdition|date('Y-m-d') }}</p>
+                        <p><strong>Prix:</strong> {{ livre.Prix }} €</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('app_livre-update', {'id': livre.id}) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ path('app_livre-delete', {'id': livre.id}) }}" class="btn btn-danger">Supprimer</a>
+                        <a href="{{ path('app_livre-findall') }}" class="btn btn-secondary">Retour à la liste</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

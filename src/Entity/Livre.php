@@ -38,6 +38,9 @@ class Livre
     #[ORM\Column]
     private ?float $Prix = null;
 
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    private ?Categories $categorie = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,6 +138,18 @@ class Livre
     public function setPrix(float $Prix): static
     {
         $this->Prix = $Prix;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categories
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categories $categorie): static
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

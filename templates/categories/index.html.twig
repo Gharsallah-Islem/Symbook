@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+    <h1>Liste des categories</h1>
+    <div class="d-flex justify-content-end">
+    <a href="{{ path('admin_categories_create') }}">Ajouter une catégorie</a>
+    </div>
+    <ul>
+        {% for category in categories %}
+            <li>
+                {{ category.libelle }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

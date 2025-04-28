@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LivreController!{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Liste des livres</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Editeur</th>
+                <th>Date</th>
+                <th>Prix</th>
+                <th>Catégorie</th>
+                <th colspan="3">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for livre in livres %}
+                <tr>
+                    <td>{{ livre.titre }}</td>
+                    <td>{{ livre.editeur }}</td>
+                    <td>{{ livre.dateEdition|date('Y-m-d') }}</td>
+                    <td>{{ livre.prix }}</td>
+                    <td>{{ livre.categorie ? livre.categorie.libelle : 'Aucune catégorie' }}</td>
+                    <td>
+                        <a href="{{ path('app_livre-show', {'id': livre.id}) }}">show</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('app_livre-update', {'id': livre.id}) }}">Update</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('app_livre-delete', {'id': livre.id}) }}">delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation">
+            {{ knp_pagination_render(livres) }}
+        </div>
+    </div>
+{% endblock %}
